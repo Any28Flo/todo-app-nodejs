@@ -19,19 +19,23 @@ const showMenu = () => {
       input: process.stdin,
       output: process.stdout,
     })
-    readLine.question(`Choose an option`, (opt) => {
-      console.log(opt)
+    readLine.question(`Choose an option\n`, (opt) => {
+      readLine.close()
+
       resolve(opt)
     })
   })
 }
 const pause = () => {
-  const readLine = require("readline").createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  })
-  readLine.question(`Press ${"ENTER".green} to continue`, (opt) => {
-    console.log(opt)
+  return new Promise((resolve, reject) => {
+    const readLine = require("readline").createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    })
+    readLine.question(`Press ${"ENTER".green} to continue`, (opt) => {
+      readLine.close()
+      resolve(opt)
+    })
   })
 }
 module.exports = { showMenu, pause }
