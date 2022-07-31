@@ -1,3 +1,5 @@
+const { log } = require("console")
+
 require("colors")
 
 const showMenu = () => {
@@ -38,4 +40,8 @@ const pause = () => {
     })
   })
 }
-module.exports = { showMenu, pause }
+
+
+
+
+module.exports = { showMenu, pause}
