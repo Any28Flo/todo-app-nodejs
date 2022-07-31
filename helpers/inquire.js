@@ -1,3 +1,5 @@
+require("colors");
+
 const inquirer = require("inquirer");
 
 const questions =  [
@@ -45,6 +47,17 @@ const questions =  [
 
 const showMenuInquirer = async ()=> {
 
-    return await inquirer.prompt(questions)
+    const {question}= await inquirer.prompt(questions)
+    return question;
 }
-module.exports ={showMenuInquirer}
+const pauseInquirer = async () =>{
+     await inquirer.prompt({
+        type: "input",
+        name:"enter",
+        message : `Press ${"ENTER".green} to continue`
+    })
+}
+module.exports ={
+    showMenuInquirer,
+    pauseInquirer
+}
