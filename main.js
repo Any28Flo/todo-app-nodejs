@@ -1,6 +1,7 @@
 require("colors")
 
 const {showMenuInquirer,     pauseInquirer, message} = require("./helpers/inquire");
+const { saveFile } = require("./helpers/saveFile");
 const { Tasks } = require("./models/tasks");
 
 const main = async () => {
@@ -23,6 +24,7 @@ const main = async () => {
         break   
     }
     console.log("\n");
+    saveFile(JSON.stringify(tasks.listArr))
     await pauseInquirer()
       
   }while(opt !== "0")

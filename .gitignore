@@ -43,6 +43,6 @@
 
 # Ignore node_modules
 /node_modules
-
+db/*.json
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,visualstudiocode
