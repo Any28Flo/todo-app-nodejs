@@ -1,14 +1,27 @@
 require("colors")
 
-const {showMenuInquirer,     pauseInquirer} = require("./helpers/inquire");
+const {showMenuInquirer,     pauseInquirer, message} = require("./helpers/inquire");
+const { Tasks } = require("./models/tasks");
 
 const main = async () => {
-  console.log("Main program".rainbow);
 
   let opt= "";
+  let tasks = new Tasks();
+
   do{
     
-    opt =  await  showMenuInquirer()
+    opt =  await  showMenuInquirer();
+    switch(opt){
+      case '1':
+        //add task
+        const msg = await message("Add a description");
+        tasks.newTask(msg)
+        break;
+      case '2': 
+        //show task
+        console.log(tasks.listArr)
+        break   
+    }
     console.log("\n");
     await pauseInquirer()
       
