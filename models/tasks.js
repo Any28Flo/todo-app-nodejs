@@ -6,7 +6,6 @@ class Tasks{
     get listArr (){
         let array =[];
         Object.keys(this._tasks).forEach(key =>{
-            console.log(key);
             array.push(this._tasks[key])
         })
         return array
