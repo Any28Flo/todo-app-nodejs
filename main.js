@@ -1,13 +1,20 @@
 require("colors")
 
-const {showMenuInquirer,     pauseInquirer, message} = require("./helpers/inquire");
-const { saveFile } = require("./helpers/saveFile");
+const {showMenuInquirer, pauseInquirer, message} = require("./helpers/inquire");
+const { saveFile, readDatabase } = require("./helpers/dbMethods");
 const { Tasks } = require("./models/tasks");
 
 const main = async () => {
 
   let opt= "";
   let tasks = new Tasks();
+  let tasksDb= readDatabase();
+
+  if(tasksDb){
+    //guardalas
+    tasks.loadTaskFromDatabase(tasksDb)
+  }
+ // await pauseInquirer();
 
   do{
     
@@ -20,11 +27,17 @@ const main = async () => {
         break;
       case '2': 
         //show task
-        console.log(tasks.listArr)
-        break   
+        tasks.list()
+        break
+      case '3':
+        tasks.listTaskDoneAndTodo();
+        break;
+      case '4':
+        tasks.listTaskDoneAndTodo(false)
+
     }
     console.log("\n");
-    saveFile(JSON.stringify(tasks.listArr))
+   //saveFile(tasks.listArr)
     await pauseInquirer()
       
   }while(opt !== "0")
