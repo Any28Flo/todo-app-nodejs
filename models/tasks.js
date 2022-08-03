@@ -56,7 +56,15 @@ class Tasks{
                 }
             }
         })
+
     }
+
+    dropTask(taskToDrop){
+        if(this._tasks[taskToDrop]){
+            delete this._tasks[taskToDrop]
+        }
+    }
+
 
 
 

@@ -1,6 +1,12 @@
 require("colors")
 
-const {showMenuInquirer, pauseInquirer, message} = require("./helpers/inquire");
+const {
+  showMenuInquirer,
+  pauseInquirer,
+  message,
+  listDropTask,
+  confirmDrop
+} = require("./helpers/inquire");
 const { saveFile, readDatabase } = require("./helpers/dbMethods");
 const { Tasks } = require("./models/tasks");
 
@@ -33,7 +39,16 @@ const main = async () => {
         tasks.listTaskDoneAndTodo();
         break;
       case '4':
-        tasks.listTaskDoneAndTodo(false)
+        tasks.listTaskDoneAndTodo(false);
+        break;
+      case '5':
+       let taskToDrop =await listDropTask(tasks.listArr);
+       let confirm = confirmDrop("Are you sure to drop the task?")
+
+       if(confirm){
+         tasks.dropTask(taskToDrop)
+
+       }
 
     }
     console.log("\n");

@@ -65,8 +65,42 @@ const message = async(message)=>{
    const {input} = await inquirer.prompt(msg)
    return input
 }
+const listDropTask = async( tasks =[]) =>{
+    const choices = tasks.map((task, index) =>{
+
+        let indx= `${index+1}`.green;
+        return {
+            value: task.id,
+            name: `${indx}. ${task.desc}`
+        }
+})
+    choices.unshift({ value: '0', name: `${"0.".green } Cancel`});
+
+    const questions = {
+        name: "taskToDrop",
+        type: "list",
+        message: "Choose a task to drop",
+        choices : choices
+    };
+    const {taskToDrop} = await inquirer.prompt(questions);
+
+    return taskToDrop
+
+}
+ const confirmDrop = async (msg) =>{
+    const questions = {
+        name: "confirm",
+        type: "confirm",
+        message: msg
+    }
+    const {confirm} = await inquirer.prompt(questions);
+    return confirm
+
+}
 module.exports ={
     showMenuInquirer,
     pauseInquirer,
-    message
+    message,
+    listDropTask,
+    confirmDrop
 }
