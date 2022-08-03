@@ -73,7 +73,7 @@ const listDropTask = async( tasks =[]) =>{
             value: task.id,
             name: `${indx}. ${task.desc}`
         }
-})
+    })
     choices.unshift({ value: '0', name: `${"0.".green } Cancel`});
 
     const questions = {
@@ -97,10 +97,34 @@ const listDropTask = async( tasks =[]) =>{
     return confirm
 
 }
+const listToCompleteTask = async (tasks )=>{
+
+    const choices = tasks.map((task, index) =>{
+
+        let indx= `${index+1}`.green;
+            return {
+                value: task.id,
+                name: `${indx}. ${task.desc}`,
+                checked: task.fishinedOn ? true : false
+            }
+
+
+    })
+
+    const questions = {
+        name: "tasksToComplete",
+        type: "checkbox",
+        message: "Choose a task to complete",
+        choices
+    };
+    const {tasksToComplete} = await inquirer.prompt(questions);
+    return tasksToComplete
+}
 module.exports ={
     showMenuInquirer,
     pauseInquirer,
     message,
     listDropTask,
-    confirmDrop
+    confirmDrop,
+    listToCompleteTask
 }

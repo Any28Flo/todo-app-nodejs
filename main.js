@@ -5,7 +5,8 @@ const {
   pauseInquirer,
   message,
   listDropTask,
-  confirmDrop
+  confirmDrop,
+  listToCompleteTask
 } = require("./helpers/inquire");
 const { saveFile, readDatabase } = require("./helpers/dbMethods");
 const { Tasks } = require("./models/tasks");
@@ -42,17 +43,22 @@ const main = async () => {
         tasks.listTaskDoneAndTodo(false);
         break;
       case '5':
+        const ids = await listToCompleteTask(tasks.listArr);
+        tasks.toggleDone(ids)
+        break
+      case '6':
        let taskToDrop =await listDropTask(tasks.listArr);
        let confirm = confirmDrop("Are you sure to drop the task?")
 
        if(confirm){
-         tasks.dropTask(taskToDrop)
-
+         tasks.dropTask(taskToDrop);
+         console.log("Successfully drop it");
        }
+       break
 
     }
     console.log("\n");
-   //saveFile(tasks.listArr)
+    saveFile(tasks.listArr)
     await pauseInquirer()
       
   }while(opt !== "0")

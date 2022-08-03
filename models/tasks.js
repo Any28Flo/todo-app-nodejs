@@ -65,6 +65,23 @@ class Tasks{
         }
     }
 
+    toggleDone(ids){
+
+        ids.forEach(id =>{
+            let task = this._tasks[id];
+            if(!task.fishinedOn){
+                task.fishinedOn = new Date().toISOString();
+            }
+        })
+
+        this.listArr.forEach(task =>{
+            if(!ids.includes(task.id)){
+                this._tasks[task.id].fishinedOn = null;
+            }
+        })
+
+    }
+
 
 
 
