@@ -42,11 +42,11 @@ class Tasks{
         let counter = 0;
         this.listArr.forEach( (task) =>{
             const {desc, fishinedOn} = task;
-
+            const date = `${fishinedOn}`.green
             if(done){
                 if(fishinedOn){
                     counter++;
-                    console.log ( `${counter.toString().green}.- ${desc}  `)
+                    console.log ( `${counter.toString().green}.- ${desc} :: ${date}`)
 
                 }
             }else{
