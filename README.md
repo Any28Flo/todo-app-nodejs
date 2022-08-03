@@ -1,7 +1,7 @@
 #  CLI TODO APP
 
 ## What is CLI TODO APP?
-[!todoApp](./public/images/app.png)
+![todoApp](./public/images/app.png)
 
 It's a cli app wrote in NODEJS, to create, delete, mark a complete tasks.
 
